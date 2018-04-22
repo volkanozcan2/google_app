@@ -21,13 +21,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/hasher', hasher);
-io.on("connection", function(socket) {
+let connectCounter = 0;
+io.on("connect", function(socket) {
+    connectCounter++;
+    io.emit("counter", connectCounter);
     socket.on('chat message', function(msg) {
         io.emit('chat message', msg);
     });
+    socket.on("disconnect", () => {
+        connectCounter--;
+        io.emit("counter", connectCounter);
+
+    })
 });
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
