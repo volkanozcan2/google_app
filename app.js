@@ -4,7 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var indexRouter = require('./routes/index');
-var hasher = require('./routes/hash');
 var app = express();
 var io = app.io = require("socket.io")();
 // view engine setup
@@ -16,9 +15,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
-app.use('/hasher', hasher);
 let connectCounter = 0;
 io.on("connect", function(socket) {
+    console.log('gelen var ' + Object.keys(socket.client.id));
     connectCounter++;
     io.emit("counter", connectCounter);
     socket.on('chat message', function(msg) {
