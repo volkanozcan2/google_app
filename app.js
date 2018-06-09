@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 let connectCounter = 0;
 io.on("connect", function(socket) {
-    console.log('gelen var ' + Object.keys(socket.client.id));
+    
     connectCounter++;
     io.emit("counter", connectCounter);
     socket.on('chat message', function(msg) {
