@@ -16,8 +16,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 let connectCounter = 0;
-io.on("connect", function(socket) {
-    
+io.on("connect", function(socket) {    
     connectCounter++;
     io.emit("counter", connectCounter);
     socket.on('chat message', function(msg) {
