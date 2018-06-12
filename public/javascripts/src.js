@@ -8,7 +8,7 @@ $(function() {
     });
 
     socket.on("chat message", (mes) => {
-        $("#ws").text("with id of " + mes.id + " " + mes.x + " : " + mes.y);
+        $("#ws").text(mes.x + " : " + mes.y);
     });
     socket.on("broadcast", (mes) => {
         console.log('new user with the id of ' + mes.id + " has connected");

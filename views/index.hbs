@@ -1,10 +1,19 @@
 <div class="row">
-    <div class="col-md-12">
-        <div class="card">
+    <div class="col-md-6">
+        <div class="card card-1">
+            <h5 class="card-header">Local 🏠 </h5>
             <div class="card-body">
-                <h5 class="card-title">Connected users:<span id="count"></span> </h5>
-                <p class="card-text">received from websocket: <span id="ws"></span></p>
-                <p class="card-text">mouse position : <span id="mp"></span></p>
+                <h6 class="card-title">Local Position of mouse pointer</h6>
+                <p class="card-text" id="mp">&nbsp</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card card-1">
+            <h5 class="card-header">Websocket 🌐 </h5>
+            <div class="card-body">
+                <h6 class="card-title">This one is coming from websocket</h6>
+                <p class="card-text" id="ws">&nbsp</p>
             </div>
         </div>
     </div>
