@@ -12,16 +12,12 @@ var fs = require("fs");
 /**
  * Get port from environment and store in Express.
  */
-var options = {
-    key: fs.readFileSync(__dirname + '/localhost.key'),
-    cert: fs.readFileSync(__dirname + '/localhost.crt')
-}
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 /**
  * Create HTTP server.
  */
-var server = (process.env.NODE_ENV == "local") ? https.createServer(options, app) : http.createServer(app);
+var server = http.createServer(app);
 var io = app.io
 io.attach(server);
 
