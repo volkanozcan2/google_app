@@ -9,22 +9,24 @@ var io = app.io = require("socket.io")();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+let connectCounter = 0;
+app.set("test", Math.random());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
-let connectCounter = 0;
-io.on("connect", function(socket) {    
+io.on("connect", function(socket) {
     connectCounter++;
-    io.emit("counter", connectCounter);
+
+    io.emit("counter", { do: "add", id: socket.id });
     socket.on('chat message', function(msg) {
         io.emit('chat message', msg);
     });
     socket.on("disconnect", () => {
         connectCounter--;
-        io.emit("counter", connectCounter);
+        io.emit("counter", { do: "remove", id: socket.id });
     })
 });
 // catch 404 and forward to error handler
