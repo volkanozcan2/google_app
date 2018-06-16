@@ -10,7 +10,8 @@ wsapp is a simple sample project with node.js and socket.io
 ### Installation
 
 $ npm install 
-$ node app
+
+$ npm start
 
 ### Todos
 
